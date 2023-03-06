@@ -53,6 +53,12 @@ main {
   color: var(--black);
 }
 
+.section_inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
 .animate__delay-300ms {
   animation-delay: 0.3s !important;
 }

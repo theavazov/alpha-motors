@@ -6,14 +6,11 @@ import { MotionSection } from "../components/MotionSection";
 import { useInView } from "react-intersection-observer";
 import mainImage from "../public/media/about_img.jpg";
 import Image from "next/image";
-import supabase from "../lib/supabase";
 
 export default function HomePage() {
   const { ref: section, inView: sectionIsVisible } = useInView({
     triggerOnce: true,
   });
-
-  console.log(supabase);
 
   return (
     <>

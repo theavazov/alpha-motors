@@ -13,7 +13,7 @@ export function Form() {
     <MotionSection motionRef={section} motionBoolean={sectionIsVisible}>
       <div className={`box ${styles.form_inner}`}>
         <div className={styles.form_content}>
-          <p className="section_title">Book an Appointement</p>
+          <h3 className="section_title">Book an Appointement</h3>
           <form className={styles.form}>
             <div className={styles.form_inner}>
               <input type="text" placeholder="Full Name" />
