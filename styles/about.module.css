@@ -1,0 +1,41 @@
+.about_inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 32px;
+}
+
+.about_texts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about_texts p {
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--grayscale);
+}
+
+.mini_img {
+  position: relative;
+  width: 100%;
+  height: 440px;
+}
+
+.img {
+  grid-column: span 2 / span 2;
+  position: relative;
+  width: 100%;
+  height: 570px;
+}
+
+.mini_img img,
+.img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
