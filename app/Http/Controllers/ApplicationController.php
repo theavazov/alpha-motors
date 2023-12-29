@@ -7,19 +7,20 @@ use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
+    public $title = 'Заявки с сайта';
+
     public function index()
     {
-        $object = Application::latest()->paginate(10);
+        $array = Application::latest()->paginate(10);
 
-        return view('app/pages/applications', [
-            'title' => 'Заявки с сайта',
-            'path' => '/applications',
+        return view('app.pages.applications.index', [
+            'title' => $this->title,
             'breadcrumb' => null,
-            'data' => $object
+            'data' => $array
         ]);
     }
 
-    public function show()
+    public function show($id)
     {
     }
 
@@ -46,8 +47,18 @@ class ApplicationController extends Controller
         ], 200);
     }
 
-    public function edit()
+    public function edit($id)
     {
+        $object = Application::find($id);
+
+        return view('app.pages.applications.show', [
+            'title' => 'Изменить',
+            'breadcrumb' => [
+                'title' => $this->title,
+                'path' => route('applications.index')
+            ],
+            'object' => $object
+        ]);
     }
 
 
@@ -61,16 +72,16 @@ class ApplicationController extends Controller
 
         if (!$object) {
             return back()->with([
-                'message' => 'Application not found',
-                'success' => false
+                'success' => false,
+                'message' => 'Not found'
             ]);
         }
 
         $object->delete();
 
         return back()->with([
-            'message' => 'Successfully deleted',
-            'success' => true
+            'success' => true,
+            'message' => 'Successfully deleted'
         ]);
     }
 }

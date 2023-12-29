@@ -2,10 +2,24 @@
     <a href="{{ route('admin') }}" class="logo">Dashboard</a>
     <div class="accordion accordion-flush" id="accordionFlushExample">
         <a href="{{ route('applications.index') }}"
-            class="sidenav-link {{ Request::is('admin/applications') ? 'active' : '' }}">
+            class="sidenav-link {{ Request::is('admin/applications') || Request::is('admin/applications/*') ? 'active' : '' }}">
             <div>
                 <img src="{{ asset('app/icons/applications.svg') }}" alt="icon" />
                 Заявки с сайта
+            </div>
+        </a>
+        <a href="{{ route('news.index') }}"
+            class="sidenav-link {{ Request::is('admin/news') || Request::is('admin/news/*') ? 'active' : '' }}">
+            <div>
+                <img src="{{ asset('app/icons/news.svg') }}" alt="icon" />
+                Новости
+            </div>
+        </a>
+        <a href="{{ route('faq.index') }}"
+            class="sidenav-link {{ Request::is('admin/faq') || Request::is('admin/faq/*') ? 'active' : '' }}">
+            <div>
+                <img src="{{ asset('app/icons/faq.svg') }}" alt="icon" />
+                FAQ
             </div>
         </a>
         {{-- <div class="accordion-item">

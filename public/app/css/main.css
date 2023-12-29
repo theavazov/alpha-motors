@@ -355,7 +355,7 @@ p.c-breadcrumb-element,
 
 /* === NPROGRESS === */
 #nprogress .bar {
-    background: var(--blue) !important;
+    background: var(--black) !important;
 }
 
 #nprogress .spinner {

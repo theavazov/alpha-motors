@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::create('applications', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
-            $table->string('email')->unique();
-            $table->string('phone_number');
-            $table->string('service_id');
-            $table->longText('message')->nullable();
+            $table->json('title');
+            $table->json('subtitle')->nullable();
+            $table->json('body');
+            $table->string('image')->nullable();
             $table->boolean('is_active')->default(false);
             $table->enum('status', ['pending', 'allowed', 'disallowed'])->default('pending');
             $table->timestamps();
@@ -30,7 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
-        Schema::dropIfExists('applications');
+        Schema::dropIfExists('news');
     }
 };
