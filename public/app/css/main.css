@@ -324,32 +324,23 @@ p.c-breadcrumb-element,
 }
 
 /* === TOAST === */
-.toast {
+.c-toast {
     position: fixed;
-    top: 40px;
+    top: 20px;
     right: 16px;
     z-index: 4;
     padding: 20px;
     font-size: 16px;
     line-height: 20px;
     color: var(--white);
-    background-color: var(--green);
-    transition: 0.5s;
-    opacity: 0;
-    transform: translateY(20px);
+    border-radius: 4px;
 }
 
-.toast.show {
-    opacity: 1;
-    transition: 0.5s;
-    transform: translateY(0px);
-}
-
-.toast.success {
+.c-toast.success {
     background-color: var(--green);
 }
 
-.toast.error {
+.c-toast.error {
     background-color: var(--red);
 }
 

@@ -2,6 +2,11 @@
     width: 100%;
 }
 
+.c-center {
+    display: grid;
+    place-items: center;
+}
+
 .c-table thead .c-table-row {
     background-color: var(--light);
 }
@@ -90,7 +95,7 @@
     font-weight: 600;
 }
 
-.table-text.non-active {
+.table-text.not-active {
     background-color: var(--red);
 }
 

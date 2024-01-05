@@ -17,8 +17,7 @@ return new class extends Migration
             $table->json('subtitle')->nullable();
             $table->json('body');
             $table->string('image')->nullable();
-            $table->boolean('is_active')->default(false);
-            $table->enum('status', ['pending', 'allowed', 'disallowed'])->default('pending');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

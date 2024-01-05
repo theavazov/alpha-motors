@@ -33,8 +33,8 @@
         <main class="main">
             @yield('content')
         </main>
+        @include('app.partials._toast')
     </div>
-    @include('app.partials._toast')
     @livewireScripts
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.js"
         integrity="sha512-x6oUSDeai/Inb/9HFvbrBtDOnLvFSd37f6j2tKRePhFBLYAezejnN5xgG52M20rnFN66+6EWwuFwAneEXyq6oA=="
@@ -50,7 +50,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="{{ asset('app/js/dropzone.js') }}"></script>
-    {{-- <script src="/admin/js/tab.js"></script> --}}
+    <script src="{{ asset('app/js/tab.js') }}"></script>
     <script>
         NProgress.start();
         $(document).ready(() => {

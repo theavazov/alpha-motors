@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>{{ $heading }}</title>
     {{-- FONT --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,13 @@
         rel="stylesheet">
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('client/css/main.css') }}">
+    @if (Request::is('/'))
+        <link rel="stylesheet" href="{{ asset('client/css/index.css') }}">
+    @elseif(Request::is('about-us'))
+        <link rel="stylesheet" href="{{ asset('client/css/about.css') }}">
+    @elseif(Request::is('vehicles/*') || Request::is('spare-parts/*'))
+        <link rel="stylesheet" href="{{ asset('client/css/product-show.css') }}">
+    @endif
 </head>
 
 <body>

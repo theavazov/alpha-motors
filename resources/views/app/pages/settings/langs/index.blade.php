@@ -3,7 +3,7 @@
 @section('content')
     <div class="page-top">
         <h1 class="page-title">{{ $title }}</h1>
-        <a href="{{ route('faq.create') }}" class="c-btn">Добавить</a>
+        <a href="{{ route('langs.create') }}" class="c-btn">Добавить</a>
     </div>
     @include('app.partials._breadcrumb')
     <div class="page-content">
@@ -12,18 +12,19 @@
                 <thead>
                     <tr class="c-table-row">
                         <th>№</th>
-                        <th>Вопрос</th>
-                        <th>Ответ</th>
-                        <th>Active</th>
+                        <th>Имя</th>
+                        <th>Код</th>
+                        <th>Активный</th>
+                        <th>По умолчанию</th>
                         <th>Действия</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $object)
-                        <tr>
+                        <tr class="c-table-row">
                             <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $object['question'][$locale['code']] }}</td>
-                            <td>{{ $object['answer'][$locale['code']] }}</td>
+                            <td>{{ $object['name'] }}</td>
+                            <td>{{ $object['code'] }}</td>
                             <td>
                                 <div class="c-center">
                                     @if ($object['is_active'] == true)
@@ -34,15 +35,25 @@
                                 </div>
                             </td>
                             <td>
+                                <div class="c-center">
+                                    @if ($object['is_default'] == true)
+                                        <span class="table-text">Active</span>
+                                    @else
+                                        <span class="table-text not-active">Not active</span>
+                                    @endif
+                                </div>
+                            </td>
+                            <td>
                                 <div class="events-td">
-                                    <a href="{{ route('faq.edit', ['id' => $object['id']]) }}" class="event-btn edit">
+                                    <a href="{{ route('langs.edit', ['id' => $object['id']]) }}" class="event-btn edit">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                         </svg>
                                     </a>
-                                    <a href="{{ route('faq.destroy', ['id' => $object['id']]) }}" class="event-btn delete">
+                                    <a href="{{ route('langs.destroy', ['id' => $object['id']]) }}"
+                                        class="event-btn delete">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round"

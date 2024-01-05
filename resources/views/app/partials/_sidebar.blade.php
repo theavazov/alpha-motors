@@ -22,12 +22,12 @@
                 FAQ
             </div>
         </a>
-        {{-- <div class="accordion-item">
+        <div class="accordion-item">
             <div class="sidenav-link accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#settings" aria-expanded="false" aria-controls="settings">
                     <div>
-                        <img src="/admin/icons/settings.svg" alt="icon" />
+                        <img src="/app/icons/settings.svg" alt="icon" />
                         Настройки
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -38,11 +38,11 @@
             </div>
             <div id="settings" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body sidenav-accordion-body">
-                    <a href="/admin/siteinfo">Общие данные</a>
-                    <a href="/admin/languages">Языки</a>
-                    <a href="/admin/translations">Переводы</a>
+                    {{-- <a href="/admin/siteinfo">Общие данные</a> --}}
+                    <a href="{{ route('langs.index') }}">Языки</a>
+                    {{-- <a href="/admin/translations">Переводы</a> --}}
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 </aside>

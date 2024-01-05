@@ -73,7 +73,7 @@ class ApplicationController extends Controller
         if (!$object) {
             return back()->with([
                 'success' => false,
-                'message' => 'Not found'
+                'message' => 'Не найден'
             ]);
         }
 
@@ -81,7 +81,7 @@ class ApplicationController extends Controller
 
         return back()->with([
             'success' => true,
-            'message' => 'Successfully deleted'
+            'message' => 'Успешно удален'
         ]);
     }
 }

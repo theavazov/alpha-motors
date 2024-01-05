@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Faq extends Model
+class Language extends Model
 {
     use HasFactory;
-    protected $fillable = ['question', 'answer'];
+    protected $fillable = ['name', 'code', 'is_active', 'is_default'];
 }
