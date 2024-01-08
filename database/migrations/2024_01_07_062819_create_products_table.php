@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::create('applications', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
-            $table->string('email')->unique();
-            $table->string('phone_number');
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
-            $table->longText('message')->nullable();
-            $table->boolean('is_active')->default(false);
-            $table->enum('status', ['pending', 'allowed', 'disallowed'])->default('pending');
+            $table->json('title');
+            $table->json('subtitle')->nullable();
+            $table->json('description')->nullable();
+            $table->string('image')->nullable();
+            $table->string('slug')->unique();
+            $table->string('price');
+            $table->date('release-date');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
@@ -30,7 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
-        Schema::dropIfExists('applications');
+        Schema::dropIfExists('products');
     }
 };

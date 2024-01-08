@@ -35,6 +35,11 @@ button {
     background-color: unset;
 }
 
+.canvas {
+    width: 100%;
+    height: 300px;
+}
+
 .image {
     position: absolute;
     top: 0;
@@ -160,8 +165,14 @@ p.c-breadcrumb-element,
     padding: 20px 16px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    justify-content: space-between;
     background-color: var(--white);
+}
+
+.sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .logo {

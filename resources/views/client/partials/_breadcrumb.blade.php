@@ -1,14 +1,14 @@
-<section class="breadcrumb">
-    <div class="box breadcrumb__inner">
-        <nav class="breacrumb__content">
-            <a href="/" class="breacrumb__content__element">Home</a>
-            <span class="breacrumb__content__element">/</span>
+<section class="c-breadcrumb">
+    <div class="box c-breadcrumb__inner">
+        <nav class="c-breadcrumb__content">
+            <a href="/" class="c-breadcrumb__content__element">Home</a>
+            <span class="c-breadcrumb__content__element">/</span>
             @if ($parent)
-                <a href="{{ $parent['path'] }}" class="breacrumb__content__element">{{ $parent['title'] }}</a>
-                <span class="breacrumb__content__element">/</span>
+                <a href="{{ $parent['path'] }}" class="c-breadcrumb__content__element">{{ $parent['title'] }}</a>
+                <span class="c-breacrumb__content__element">/</span>
             @endif
-            <p class="breacrumb__content__element">{{ $title }}</p>
+            <p class="c-breadcrumb__content__element">{{ $title }}</p>
         </nav>
-        <h2 class="breadcrumb__title">{{ $title }}</h2>
+        <h2 class="c-breadcrumb__title">{{ $title }}</h2>
     </div>
 </section>

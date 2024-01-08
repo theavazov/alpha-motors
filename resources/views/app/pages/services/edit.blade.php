@@ -6,8 +6,9 @@
     </div>
     @include('app.partials._breadcrumb')
     <div class="page-content">
-        <form method="POST" action="{{ route('faq.store') }}" class="c-form">
+        <form method="POST" action="{{ route('services.update', ['id' => $object['id']]) }}" class="form">
             @csrf
+            @method('PUT')
             @if ($langs && count($langs) > 0)
                 <nav class="nav nav-tabs" id="nav-tab" role="tablist">
                     @foreach ($langs as $lang)
@@ -24,30 +25,30 @@
                             aria-labelledby="nav-{{ $lang['code'] }}-tab" tabindex="0">
                             <div class="c-input-div">
                                 <p>
-                                    Вопрос
+                                    Название
                                     @if ($lang['code'] == $locale['code'])
                                         <span class="c-required">*</span>
                                     @endif
                                 </p>
-                                <input type="text" placeholder="Вопрос" name="question_{{ $lang->code }}"
-                                    value='{{ old("question_$lang->code") }}' />
-                            </div>
-                            <div class="c-input-div mt">
-                                <p>
-                                    Ответ
-                                    @if ($lang['code'] == $locale['code'])
-                                        <span class="c-required">*</span>
-                                    @endif
-                                </p>
-                                <input type="text" placeholder="Вопрос" name="answer_{{ $lang->code }}"
-                                    value='{{ old("answer_$lang->code") }}' />
+                                <input type="text" placeholder="Название" name="name_{{ $lang->code }}"
+                                    value='{{ old("name_$lang->code") ? old("name_$lang->code") : $object['name'][$lang->code] }}' />
                             </div>
                         </div>
                     @endforeach
                 </div>
             @endif
+            <div class="c-input-div mt">
+                <p>
+                    Иконка <span class="c-required">*</span>
+                </p>
+                <input type="text" name="icon" placeholder="Иконка"
+                    value="{{ old('icon') ? old('icon') : $object['icon'] }}">
+                @error('icon')
+                    <span class="c-error-input">{{ $message }}</span>
+                @enderror
+            </div>
             <div class="c-form-buttons">
-                <a href="{{ route('faq.index') }}" class="c-btn-secondary">Отмена</a>
+                <a href="{{ route('services.index') }}" class="c-btn-secondary">Отмена</a>
                 <button type="submit" class="c-btn">Сохранить</button>
             </div>
         </form>

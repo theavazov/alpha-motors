@@ -5,17 +5,24 @@
 }
 
 .c-input-div input,
-.c-input-div textarea {
+.c-input-div textarea,
+.c-input-div select {
     padding: 10px !important;
     border: 1px solid #d1d1d1;
     font-size: 16px;
     line-height: 20px;
-    /* border-radius: var(--border-radius); */
 }
 
 .c-input-div input:focus,
-.c-input-div textarea:focus {
+.c-input-div textarea:focus,
+.c-input-div select:focus {
     outline: none;
+}
+
+.c-input-div select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
 }
 
 .c-input-div p {
@@ -24,7 +31,7 @@
     color: var(--black);
 }
 
-.c-input-div.mt {
+.mt {
     margin-top: 20px !important;
 }
 
@@ -143,13 +150,30 @@ input[type="checkbox"]:focus {
     padding: 12px !important;
 }
 
+.c-form-grid-3-1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.c-form-grid-3-1__2 {
+    grid-column: span 2;
+    width: 100%;
+}
+
+.c-form-grid-3-1__1 {
+    width: 100%;
+}
+
 .c-dropzone {
     border: 1px solid var(--border-color) !important;
-    min-height: 120px !important;
+    height: 100px !important;
+    min-height: auto !important;
     display: flex;
     align-items: center;
     gap: 12px !important;
     opacity: 0.6;
+    cursor: pointer;
     transition: 0.3s;
 }
 

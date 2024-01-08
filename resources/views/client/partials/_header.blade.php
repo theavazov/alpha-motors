@@ -1,16 +1,21 @@
 <header class="header">
     <div class="box header__inner">
-        <a href="/">
+        <a href="{{ route('home') }}">
             <img src="{{ asset('client/media/logo-blue.svg') }}" alt="Logo" class="logo">
         </a>
         <nav class="header__nav">
-            <a href="/vehicles"
-                class="header__navlink {{ Request::is('vehicles') || Request::is('vehicles/*') ? 'active' : '' }}">Vehicles</a>
-            <a href="/spare-parts"
-                class="header__navlink {{ Request::is('spare-parts') || Request::is('spare-parts/*') ? 'active' : '' }}">Spare
-                parts</a>
-            <a href="/about-us" class="header__navlink {{ Request::is('about-us') ? 'active' : '' }}">About us</a>
-            <a href="/contacts" class="header__navlink {{ Request::is('contacts') ? 'active' : '' }}">Contacts</a>
+            @foreach ($services as $service)
+                <a href="{{ route('service.index', ['service_slug' => $service['slug']]) }}"
+                    class="header__navlink {{ Request::is($service['slug']) ? 'active' : '' }}">
+                    {{ $service['name'][$locale] }}
+                </a>
+            @endforeach
+            <a href="{{ route('about') }}" class="header__navlink {{ Request::is('about-us') ? 'active' : '' }}">
+                Biz haqimizda
+            </a>
+            <a href="{{ route('contacts') }}" class="header__navlink {{ Request::is('contacts') ? 'active' : '' }}">
+                Kontaktlar
+            </a>
         </nav>
     </div>
 </header>

@@ -2,35 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Faq;
+use App\Models\Service;
 use App\Models\Language;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
-class FaqController extends Controller
+class ServiceController extends Controller
 {
-    public $title = 'FAQ';
+    public $title = 'Услуги';
 
     public function index()
     {
+        $array = Service::latest()->paginate(10);
         $locale = get_locale();
-        $array = Faq::latest()->paginate(10);
 
         $data = array();
 
         foreach ($array as $object) {
             $new_obj = array();
             $new_obj['id'] = $object['id'];
-            $new_obj['question'] = json_decode($object['question'], true);
-            $new_obj['answer'] = json_decode($object['answer'], true);
+            $new_obj['slug'] = $object['slug'];
+            $new_obj['name'] = db_json_decoder($object['name']);
+            $new_obj['icon'] = $object['icon'];
             $new_obj['is_active'] = $object['is_active'];
             $new_obj['created_at'] = $object['created_at'];
             $new_obj['updated_at'] = $object['updated_at'];
 
-
             array_push($data, $new_obj);
         }
 
-        return view('app.pages.faq.index', [
+        return view('app.pages.services.index', [
             'title' => $this->title,
             'breadcrumb' => null,
             'data' => $data,
@@ -38,22 +40,19 @@ class FaqController extends Controller
         ]);
     }
 
-    public function show($id)
-    {
-    }
-
-
     public function create()
     {
-        $locale = get_locale();
+        $data = Service::latest()->paginate(10);
         $langs = Language::all();
+        $locale = get_locale();
 
-        return view('app.pages.faq.create', [
+        return view('app.pages.services.create', [
             'title' => 'Создать',
             'breadcrumb' => [
                 'title' => $this->title,
-                'path' => route('faq.index')
+                'path' => route('services.index')
             ],
+            'data' => $data,
             'langs' => $langs,
             'locale' => $locale
         ]);
@@ -64,40 +63,40 @@ class FaqController extends Controller
         $locale = get_locale()['code'];
         $data = $request->all();
 
-        $question = filter_formdata_by_key($data, 'question');
-        $answer = filter_formdata_by_key($data, 'answer');
+        $name = filter_formdata_by_key($data, 'name');
 
         $request->validate([
-            "question_$locale" => ['required', 'max:255'],
-            "answer_$locale" => ['required', 'max:255'],
+            "name_$locale" => ['required', 'max:255', 'min:2'],
+            'icon' => 'required'
         ]);
 
-        Faq::create([
-            'question' => json_encode($question),
-            'answer' => json_encode($answer),
-        ]);
+        $obj = [
+            'name' => json_encode($name),
+            'icon' => $data['icon'],
+            'slug' => Str::slug($data["name_$locale"]),
+        ];
 
-        return redirect(route('faq.index'))->with([
+        Service::create($obj);
+
+        return redirect(route('services.index'))->with([
             'success' => true,
             'message' => 'Успешно добавлен'
         ], 200);
     }
 
-
     public function edit($id)
     {
-        $locale = get_locale();
+        $object = Service::find($id);
         $langs = Language::all();
-        $object = Faq::find($id);
+        $locale = get_locale();
 
-        $object['question'] = db_json_decoder($object['question']);
-        $object['answer'] = db_json_decoder($object['answer']);
+        $object['name'] = db_json_decoder($object['name']);
 
-        return view('app.pages.faq.edit', [
+        return view('app.pages.services.edit', [
             'title' => 'Изменить',
             'breadcrumb' => [
                 'title' => $this->title,
-                'path' => route('faq.index')
+                'path' => route('services.index')
             ],
             'object' => $object,
             'langs' => $langs,
@@ -110,22 +109,22 @@ class FaqController extends Controller
         $locale = get_locale()['code'];
         $data = $request->all();
 
-        $question = filter_formdata_by_key($data, 'question');
-        $answer = filter_formdata_by_key($data, 'answer');
+        $name = filter_formdata_by_key($data, 'name');
 
         $request->validate([
-            "question_$locale" => ['required', 'max:255'],
-            "answer_$locale" => ['required', 'max:255'],
+            "name_$locale" => ['required', 'max:255', 'min:2'],
+            'icon' => 'required'
         ]);
 
         $obj = [
-            'question' => json_encode($question),
-            'answer' => json_encode($answer),
+            'name' => json_encode($name),
+            'icon' => $data['icon'],
+            'slug' => Str::slug($data["name_$locale"]),
         ];
 
-        Faq::where('id', $id)->update($obj);
+        Service::where('id', $id)->update($obj);
 
-        return redirect(route('faq.index'))->with([
+        return redirect(route('services.index'))->with([
             'success' => true,
             'message' => 'Успешно изменен'
         ], 200);
@@ -133,7 +132,7 @@ class FaqController extends Controller
 
     public function destroy($id)
     {
-        $object = Faq::find($id);
+        $object = Service::find($id);
 
         if (!$object) {
             return back()->with([

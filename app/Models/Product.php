@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Application extends Model
+class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['full_name', 'email', 'message', 'phone_number', 'service_id'];
 
+    protected $guarded = [];
+
+    // relationship to service
     public function service()
     {
         return $this->belongsTo(Service::class, 'service_id');

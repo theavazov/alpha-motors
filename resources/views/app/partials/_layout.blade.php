@@ -12,18 +12,17 @@
         integrity="sha512-DanfxWBasQtq+RtkNAEDTdX4Q6BPCJQ/kexi/RftcP0BcA4NIJPSi7i31Vl+Yl5OCfgZkdJmCqz+byTOIIRboQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" />
     {{-- BOOTSTRAP --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
         integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" />
     {{-- GOOGLE FONTS --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     {{-- CSS --}}
-    @livewireStyles
     <link rel="stylesheet" href="{{ asset('app/css/main.css') }}" />
 </head>
 
@@ -35,7 +34,6 @@
         </main>
         @include('app.partials._toast')
     </div>
-    @livewireScripts
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.js"
         integrity="sha512-x6oUSDeai/Inb/9HFvbrBtDOnLvFSd37f6j2tKRePhFBLYAezejnN5xgG52M20rnFN66+6EWwuFwAneEXyq6oA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -48,16 +46,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-    <script src="{{ asset('app/js/dropzone.js') }}"></script>
     <script src="{{ asset('app/js/tab.js') }}"></script>
+    <script src="{{ asset('app/js/ckeditor.js') }}"></script>
     <script>
         NProgress.start();
         $(document).ready(() => {
             NProgress.done();
         });
     </script>
-    <script src="{{ asset('app/js/ckeditor.js') }}"></script>
+    @yield('scripts')
 </body>
 
 </html>

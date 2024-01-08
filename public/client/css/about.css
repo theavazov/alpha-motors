@@ -1,0 +1,68 @@
+.about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.inner-textside {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.inner-textside p {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--black);
+}
+
+.inner-imageside {
+    position: relative;
+    width: 100%;
+    height: 440px;
+}
+
+.faq-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* === ACCORDION === */
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.accordion-item {
+    border: none !important;
+    border-radius: 0px !important;
+}
+
+.accordion-button {
+    box-shadow: none;
+    background-color: var(--gray);
+    border: 1px solid var(--gray);
+    color: var(--black);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--black);
+    box-shadow: none;
+    background-color: var(--gray);
+}
+
+.accordion-button:focus {
+    outline: none;
+    border: 1px solid var(--gray);
+    background-color: var(--gray);
+    box-shadow: none;
+}
+
+.accordion-body {
+    border: 1px solid var(--gray);
+    background-color: var(--white);
+}

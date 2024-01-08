@@ -9,10 +9,13 @@
                     <input type="email" name="email" placeholder="Email" class="form__inner__form__input">
                     <input type="text" name="phone_number" placeholder="Phone number"
                         class="form__inner__form__input">
-                    <select name="service_id" class="form__inner__form__input">
-                        <option value="*" disabled selected>Select Your Services</option>
-                        <option value="1">Vehicle</option>
-                        <option value="2">Spare parts</option>
+                    <select name="service_id" class="form__select" aria-placeholder="sa">
+                        <option value="*" disabled selected>
+                            Xizmatni tanlang
+                        </option>
+                        @foreach ($services as $service)
+                            <option value="{{ $service['id'] }}">{{ $service['name'][$locale] }}</option>
+                        @endforeach
                     </select>
                     <textarea name="message" cols="30" rows="5" class="form__inner__form__input" placeholder="Your Message Here"></textarea>
                     @error('service')

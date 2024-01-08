@@ -13,7 +13,7 @@
                     <th>№</th>
                     <th></th>
                     <th></th>
-                    <th></th>
+                    <th>АКТИВНЫЙ</th>
                     <th>Действия</th>
                 </tr>
             </thead>

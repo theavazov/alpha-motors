@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
@@ -11,12 +12,26 @@ class ApplicationController extends Controller
 
     public function index()
     {
-        $array = Application::latest()->paginate(10);
+        $applications = Application::latest()->paginate(10);
+        $services = Service::all();
+        $locale = get_locale()['code'];
+
+        foreach ($applications as $application) {
+            $inner_service = Service::find($application['service_id']);
+            $inner_service['name'] = db_json_decoder($inner_service['name']);
+            $application['service'] = $inner_service;
+        }
+
+        foreach ($services as $service) {
+            $service['name'] = db_json_decoder($service['name']);
+        }
 
         return view('app.pages.applications.index', [
             'title' => $this->title,
             'breadcrumb' => null,
-            'data' => $array
+            'data' => $applications,
+            'locale' => $locale,
+            'services' => $services
         ]);
     }
 
@@ -31,7 +46,9 @@ class ApplicationController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $data = $request->all();
+
+        $request->validate([
             'full_name' => 'required|max:255',
             'email' => ['required', 'email'],
             'phone_number' => 'required|max:20',
